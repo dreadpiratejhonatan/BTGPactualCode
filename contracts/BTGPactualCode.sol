@@ -61,4 +61,5 @@ contract BTGPactualCode {
     }
   }
 
-}
+
+} // End of Contract BTGPactualCode
