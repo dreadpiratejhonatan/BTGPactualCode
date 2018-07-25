@@ -48,12 +48,16 @@ contract BTGPactualCode {
 
   Record[] private records;
 
+  uint transactionsCounter;
+
   function buyOption(uint _buyerId, uint _optionId, uint _howManyDollars) public {
     if ( clientsList[_buyerId].balance >= optionsList[_optionId].premium*_howManyDollars ) {
       uint optionOwner = optionsList[_optionId].owner;
       clientsList[_buyerId].balance = clientsList[_buyerId].balance - optionsList[_optionId].premium*_shares;
       clientsList[optionOwner].balance = clientsList[optionOwner].balance + optionsList[_optionId].premium*_shares;
       optionsList[_optionId].owner = _buyerId;
+
+      transactionsCounter = records.push(Record(optionOwner,_buyerId,_optionId,_howManyDollars));
     }
   }
 
